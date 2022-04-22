@@ -1,6 +1,12 @@
 import ColorChange from "./Component/ColorChange";
+import Timer from "./Component/Timer";
+
+
 function App() {
-  return <ColorChange />;
+  return <div>
+      <ColorChange/>
+      <Timer/>
+    </div>
 }
 
 export default App;
