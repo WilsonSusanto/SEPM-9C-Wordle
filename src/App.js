@@ -10,6 +10,7 @@ export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault};
+  const [currAttempt, setCurrAttempt] = useState({attempt: 0, letterpos 0});                                   
 
 
   return <div>
@@ -18,7 +19,7 @@ function App() {
       <Timer/>
         <Dictionary/>
       <br/>
-     <AppContext.Provider value={{board, setBoard}}> 
+     <AppContext.Provider value={{board, setBoard, currAttempt, setCurrAttempt}}> 
         <div className="game">
       <Board />
       <Keyboard />
