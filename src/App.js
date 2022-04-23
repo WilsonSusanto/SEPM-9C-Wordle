@@ -3,15 +3,24 @@ import Timer from "./Component/Timer";
 import Dictionary from "./Component/Dictionary"
 import Board from "./Component/Board"
 import Keyboard from "./component/Keyboard"
+import { createContext } from "react";
+
+export const AppContext = createContext();
 
 function App() {
+  const [board, setBoard] = useState(boardDefault};
 
 
   return <div>
+                                     
       <ColorChange/>
       <Timer/>
         <Dictionary/>
       <br/>
+     <AppContext.Provider value={{board, setBoard}}>                             
+      <Board />
+      <Keyboard />                               
+     </AppContext.Provider>                                
     </div>
 }
 
