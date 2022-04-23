@@ -3,7 +3,8 @@ import Timer from "./Component/Timer";
 import Dictionary from "./Component/Dictionary"
 import Board from "./Component/Board"
 import Keyboard from "./component/Keyboard"
-import { createContext } from "react";
+import { createContext, useState } from "react";
+import { boardDefault } from "../Words";
 
 export const AppContext = createContext();
 
