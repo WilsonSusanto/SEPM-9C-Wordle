@@ -1,6 +1,8 @@
 import ColorChange from "./Component/ColorChange";
 import Timer from "./Component/Timer";
 import Dictionary from "./Component/Dictionary"
+import Board from "./Component/Board"
+import Keyboard from "./component/Keyboard"
 
 function App() {
 
