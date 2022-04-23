@@ -12,7 +12,7 @@ function App() {
   const [board, setBoard] = useState(boardDefault};
   const [currAttempt, setCurrAttempt] = useState({attempt: 0, letterpos 0});    
   
-  const onSelectLetter = () => {
+  const onSelectLetter = (keyVal) => {
      if (currAttempt.letterPos > 4) return;
         const newBoard = [...board];
         newBoard [currAttempt.attempt] [currAttempt.letterPos] = keyVal;
@@ -48,7 +48,7 @@ function App() {
       <Timer/>
         <Dictionary/>
       <br/>
-     <AppContext.Provider value={{board, setBoard, currAttempt, setCurrAttempt}}> 
+     <AppContext.Provider value={{board, setBoard, currAttempt, setCurrAttempt, onSelectLetter, onDelete, onEnter}}> 
         <div className="game">
       <Board />
       <Keyboard />
