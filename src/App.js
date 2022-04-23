@@ -18,9 +18,11 @@ function App() {
       <Timer/>
         <Dictionary/>
       <br/>
-     <AppContext.Provider value={{board, setBoard}}>                             
+     <AppContext.Provider value={{board, setBoard}}> 
+        <div className="game">
       <Board />
-      <Keyboard />                               
+      <Keyboard />
+        </div>
      </AppContext.Provider>                                
     </div>
 }
