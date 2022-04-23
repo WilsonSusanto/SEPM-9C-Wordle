@@ -4,7 +4,7 @@ import Dictionary from "./Component/Dictionary"
 import Board from "./Component/Board"
 import Keyboard from "./component/Keyboard"
 import { createContext, useState } from "react";
-import { boardDefault } from "../Words";
+import { boardDefault } from "./Words";
 
 export const AppContext = createContext();
 
