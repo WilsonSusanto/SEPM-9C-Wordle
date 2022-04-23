@@ -1,11 +1,15 @@
 import ColorChange from "./Component/ColorChange";
 import Timer from "./Component/Timer";
-
+import Dictionary from "./Component/Dictionary"
 
 function App() {
+
+
   return <div>
       <ColorChange/>
       <Timer/>
+        <Dictionary/>
+      <br/>
     </div>
 }
 
