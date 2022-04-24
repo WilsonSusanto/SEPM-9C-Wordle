@@ -9,7 +9,7 @@ import { boardDefault } from "./Words";
 export const AppContext = createContext();
 
 function App() {
-  const [board, setBoard] = useState(boardDefault};
+  const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({attempt: 0, letterpos 0});    
   
   const onSelectLetter = (keyVal) => {
