@@ -2,7 +2,7 @@ import ColorChange from "./Component/ColorChange";
 import Timer from "./Component/Timer";
 import Dictionary from "./Component/Dictionary"
 import Board from "./Component/Board"
-import Keyboard from "./component/Keyboard"
+import Keyboard from "./Component/Keyboard"
 import { createContext, useState } from "react";
 import { boardDefault } from "./Words";
 
@@ -10,7 +10,7 @@ export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
-  const [currAttempt, setCurrAttempt] = useState({attempt: 0, letterpos 0});    
+  const [currAttempt, setCurrAttempt] = useState({attempt: 0, letterpos: 0});    
   
   const onSelectLetter = (keyVal) => {
      if (currAttempt.letterPos > 4) return;
