@@ -3,28 +3,21 @@ import { AppContext } from "../App";
 
 
 
-function Key(keyVal, bigKey) {
-
+const Key = ({keyVal, bigKey}) => {
     const {board, setBoard, currAttempt, onDelete, onSelectLetter, onEnter } = useContext(AppContext);
 
-
     const selectLetter = () => {
-    
-
-
-        if (keyVal ==="ENTER"){ 
+        if (keyVal === "ENTER"){ 
             onEnter()
         } else if (keyVal === "DELETE"){
             onDelete()
         } else {
             onSelectLetter(keyVal);
-
-       
+        }
     }
-
-}
   return (
     <div className="key" id={bigKey && "big"} onClick={selectLetter}>{keyVal}</div>
+
   )
 }
 

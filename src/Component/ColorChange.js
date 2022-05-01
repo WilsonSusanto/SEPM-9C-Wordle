@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 
 const Wordle = () => {
   const [BackgroundColor, setBackgroundColor] = React.useState("white");
