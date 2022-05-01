@@ -10,6 +10,8 @@ const Dictionary = () => {
         document.querySelector(".currentQuery").textContent = "You queried: " + guess;
         // If the API request does not find the word, it will throw a 404, so the catch should only ever return the "Thats not a word" response,
         // but I put the ternery there just in case.
+
+        if(guess.length == 5){
         try {
             const response = await axios.get(apiUrl+guess)
             document.querySelector(".isValidWord").textContent = (response.status == 200) ? "Thats a valid word 😎 " : "Thats not a word 😤";
@@ -20,7 +22,8 @@ const Dictionary = () => {
         catch (e) {
             document.querySelector(".isValidWord").textContent = "Thats not a word 😤"
         }
-    }
+    }else{document.querySelector(".isValidWord").textContent = "Thats not a 5 letter word"}
+}
 
     var wordOfTheDay = "hello" // Temporarily defining the word of the day for testing
 
@@ -28,11 +31,11 @@ const Dictionary = () => {
         console.log(guessedWord)
         var correctLocations = [];
         var incorrectLocations = [];  //Initialising arrays to store the locations of correct letter locations, and correct letter but incorrect location index's
+
+        const wordOfTheDayArray = wordOfTheDay.split("");
+        const guessedWordArray = guessedWord.split("");  // Splitting the words into an array of it's letters
     
         if(guessedWord != wordOfTheDay){
-            const wordOfTheDayArray = wordOfTheDay.split("");
-            const guessedWordArray = guessedWord.split("");  // Splitting the words into an array of it's letters
-
             for (let i = 0; i < wordOfTheDayArray.length; i++) {  // Loop through each letter of the word of the day
                 if (wordOfTheDayArray[i] == guessedWordArray[i]){ // Compare the letters of the word of the day to the guessed word at the same index
                 correctLocations.push(i)    // Adds the index of the correct letter location to the correct locations array
@@ -53,7 +56,7 @@ const Dictionary = () => {
               }
 
             for (let i = 0; i < 5; i++) {
-                document.querySelector(".letters" + i).style.color = "red"
+                document.querySelector(".letters" + i).style.color = "gray"
               }              
 
             for (let i = 0; i < incorrectLocations.length; i++) {
@@ -66,6 +69,12 @@ const Dictionary = () => {
         } else{
             document.querySelector(".correctLocations").textContent = "You guessed the word!"
             document.querySelector(".incorrectLocations").textContent = ""
+            for (let i = 0; i < 5; i++) {
+                document.querySelector(".letters" + i).textContent = guessedWordArray[i]
+              }
+              for (let i = 0; i < 5; i++) {
+                document.querySelector(".letters" + i).style.color = "green"
+              } 
         }
     }
 
