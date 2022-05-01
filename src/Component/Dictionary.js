@@ -46,6 +46,23 @@ const Dictionary = () => {
             }
             document.querySelector(".correctLocations").textContent = "Correct letters in correct position index: " + correctLocations
             document.querySelector(".incorrectLocations").textContent = "Correct letters in incorrect position index: " + incorrectLocations
+            console.log(incorrectLocations)
+            console.log(correctLocations)
+            for (let i = 0; i < 5; i++) {
+                document.querySelector(".letters" + i).textContent = guessedWordArray[i]
+              }
+
+            for (let i = 0; i < 5; i++) {
+                document.querySelector(".letters" + i).style.color = "red"
+              }              
+
+            for (let i = 0; i < incorrectLocations.length; i++) {
+                document.querySelector(".letters" + incorrectLocations[i]).style.color = "orange"
+              }
+            for (let i = 0; i < correctLocations.length; i++) {
+                document.querySelector(".letters" + correctLocations[i]).style.color = "green"
+              }            
+
         } else{
             document.querySelector(".correctLocations").textContent = "You guessed the word!"
             document.querySelector(".incorrectLocations").textContent = ""
@@ -63,7 +80,13 @@ const Dictionary = () => {
     <br></br>
     <h2>Is the word correct?</h2>
     <p className="correctLocations"></p>
-    <p className="incorrectLocations"></p>
+    <p className="incorrectLocations"></p><br></br>
+
+    <p className="letters0"></p>
+    <p className="letters1"></p>
+    <p className="letters2"></p>
+    <p className="letters3"></p>
+    <p className="letters4"></p>
     </div>
     )
 }
