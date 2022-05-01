@@ -7,7 +7,7 @@ const Dictionary = () => {
     const apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"
 
     async function checkValidWord() {
-        document.querySelector(".currentQuery").textContent = "You queried: " + guess;
+        document.querySelector(".currentQuery").textContent = "You queried: " + guess.toUpperCase();
         // If the API request does not find the word, it will throw a 404, so the catch should only ever return the "Thats not a word" response,
         // but I put the ternery there just in case.
 
@@ -25,10 +25,10 @@ const Dictionary = () => {
     }else{document.querySelector(".isValidWord").textContent = "Thats not a 5 letter word"}
 }
 
-    var wordOfTheDay = "hello" // Temporarily defining the word of the day for testing
+    var wordOfTheDay = "HELLO" // Temporarily defining the word of the day for testing
 
     async function compareWords(guessedWord){
-        console.log(guessedWord)
+        guessedWord = guessedWord.toUpperCase()
         var correctLocations = [];
         var incorrectLocations = [];  //Initialising arrays to store the locations of correct letter locations, and correct letter but incorrect location index's
 
@@ -47,10 +47,7 @@ const Dictionary = () => {
 
                 }
             }
-            document.querySelector(".correctLocations").textContent = "Correct letters in correct position index: " + correctLocations
-            document.querySelector(".incorrectLocations").textContent = "Correct letters in incorrect position index: " + incorrectLocations
-            console.log(incorrectLocations)
-            console.log(correctLocations)
+
             for (let i = 0; i < 5; i++) {
                 document.querySelector(".letters" + i).textContent = guessedWordArray[i]
               }
@@ -67,8 +64,6 @@ const Dictionary = () => {
               }            
 
         } else{
-            document.querySelector(".correctLocations").textContent = "You guessed the word!"
-            document.querySelector(".incorrectLocations").textContent = ""
             for (let i = 0; i < 5; i++) {
                 document.querySelector(".letters" + i).textContent = guessedWordArray[i]
               }
@@ -87,9 +82,6 @@ const Dictionary = () => {
     <p className="currentQuery"></p>
     <p className="isValidWord"></p>
     <br></br>
-    <h2>Is the word correct?</h2>
-    <p className="correctLocations"></p>
-    <p className="incorrectLocations"></p><br></br>
 
     <p className="letters0"></p>
     <p className="letters1"></p>
