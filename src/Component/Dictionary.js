@@ -13,9 +13,42 @@ const Dictionary = () => {
         try {
             const response = await axios.get(apiUrl+guess)
             document.querySelector(".isValidWord").textContent = (response.status == 200) ? "Thats a valid word 😎 " : "Thats not a word 😤";
+            if (response.status == 200){
+                compareWords(guess)
+            }
         }
         catch (e) {
             document.querySelector(".isValidWord").textContent = "Thats not a word 😤"
+        }
+    }
+
+    var wordOfTheDay = "hello" // Temporarily defining the word of the day for testing
+
+    async function compareWords(guessedWord){
+        console.log(guessedWord)
+        var correctLocations = [];
+        var incorrectLocations = [];  //Initialising arrays to store the locations of correct letter locations, and correct letter but incorrect location index's
+    
+        if(guessedWord != wordOfTheDay){
+            const wordOfTheDayArray = wordOfTheDay.split("");
+            const guessedWordArray = guessedWord.split("");  // Splitting the words into an array of it's letters
+
+            for (let i = 0; i < wordOfTheDayArray.length; i++) {  // Loop through each letter of the word of the day
+                if (wordOfTheDayArray[i] == guessedWordArray[i]){ // Compare the letters of the word of the day to the guessed word at the same index
+                correctLocations.push(i)    // Adds the index of the correct letter location to the correct locations array
+                }
+                for (let j = 0; j < wordOfTheDayArray.length; j++) {  
+                    if (wordOfTheDayArray[i] == guessedWordArray[j]){  // Loop through each letter of the guessed word and compare it to the current letter of the word of the day denoted by i
+                        incorrectLocations.push(j)  // Adds the index of correct letter but incorrect location to the incorrect locations array
+                    }
+
+                }
+            }
+            document.querySelector(".correctLocations").textContent = "Correct letters in correct position index: " + correctLocations
+            document.querySelector(".incorrectLocations").textContent = "Correct letters in incorrect position index: " + incorrectLocations
+        } else{
+            document.querySelector(".correctLocations").textContent = "You guessed the word!"
+            document.querySelector(".incorrectLocations").textContent = ""
         }
     }
 
@@ -27,6 +60,10 @@ const Dictionary = () => {
     <h2>Is this a valid word?</h2>
     <p className="currentQuery"></p>
     <p className="isValidWord"></p>
+    <br></br>
+    <h2>Is the word correct?</h2>
+    <p className="correctLocations"></p>
+    <p className="incorrectLocations"></p>
     </div>
     )
 }

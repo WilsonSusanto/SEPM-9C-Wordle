@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useEffect } from "react";
 import { AppContext } from "../App";
-import { Key } from "react";
+import Key from "./Key.js";
 
 function Keyboard() {
   const { onEnter, onDelete, onSelectLetter } = useContext(AppContext);
