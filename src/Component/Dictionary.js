@@ -31,6 +31,7 @@ const Dictionary = () => {
         guessedWord = guessedWord.toUpperCase()
         var correctLocations = [];
         var incorrectLocations = [];  //Initialising arrays to store the locations of correct letter locations, and correct letter but incorrect location index's
+        document.querySelector(".isWordCorrect").textContent = ""
 
         const wordOfTheDayArray = wordOfTheDay.split("");
         const guessedWordArray = guessedWord.split("");  // Splitting the words into an array of it's letters
@@ -70,6 +71,7 @@ const Dictionary = () => {
               for (let i = 0; i < 5; i++) {
                 document.querySelector(".letters" + i).style.color = "green"
               } 
+              document.querySelector(".isWordCorrect").textContent = "You guessed the word!"
         }
     }
 
@@ -82,7 +84,7 @@ const Dictionary = () => {
     <p className="currentQuery"></p>
     <p className="isValidWord"></p>
     <br></br>
-
+    <p className="isWordCorrect"></p>
     <p className="letters0"></p>
     <p className="letters1"></p>
     <p className="letters2"></p>
