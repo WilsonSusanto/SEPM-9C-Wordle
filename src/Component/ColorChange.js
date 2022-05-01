@@ -53,7 +53,8 @@ const Wordle = () => {
   return (
     <>
       <div style={{ backgroundColor: BackgroundColor }}>
-        1<button onClick={HandleDarkMode}>Dark Mode</button>
+        <button onClick={HandleDarkMode}>Dark Mode</button>
+        <p style={{ color: fontColor }}>Word</p>
       </div>
       <div style={{ backgroundColor: frameColor }}>
         <button onClick={HandleColorBlindMode}>Color Blind Mode</button>
