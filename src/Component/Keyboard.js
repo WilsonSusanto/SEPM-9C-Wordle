@@ -51,17 +51,17 @@ function Keyboard() {
       <div className="line2">
         {keys2.map((key) => {
           return "test";
-          //    return <Key keyVal={key} />;
+             return <Key keyVal={key} />;
         })}
       </div>
       <div className="line3">
-        {/* <Key keyVal={"ENTER"} /> */}
+        <Key keyVal={"ENTER"} />
         {keys3.map((key) => {
           return "test";
-          //    return <Key keyVal={key} />;
+             return <Key keyVal={key} />;
         })}
 
-        {/* <Key keyVal={"DELETE"} /> */}
+        <Key keyVal={"DELETE"} />
       </div>
     </div>
   );

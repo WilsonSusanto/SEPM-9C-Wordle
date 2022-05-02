@@ -50,10 +50,10 @@ function App() {
           onEnter,
         }}
       >
-        {/* <div className="game">
+        <div className="game">
           <Board />
           <Keyboard />
-        </div> */}
+        </div>
       </AppContext.Provider>
     </div>
   );
