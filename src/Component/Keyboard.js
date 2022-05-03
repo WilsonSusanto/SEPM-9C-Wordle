@@ -10,6 +10,7 @@ function Keyboard() {
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
   const handleKeyboard = useCallback((event) => {
+    console.log(event)
     if (event.key === "Enter") {
       onEnter();
     } else if (event.key === "Backspace") {
@@ -37,7 +38,7 @@ function Keyboard() {
     document.addEventListener("keydown", handleKeyboard);
 
     return () => {
-      // document.removeEventLister("keydown", handleKeyboard)
+      document.removeEventListener("keydown", handleKeyboard)
     };
   }, [handleKeyboard]);
 
@@ -50,14 +51,12 @@ function Keyboard() {
       </div>
       <div className="line2">
         {keys2.map((key) => {
-          return "test";
              return <Key keyVal={key} />;
         })}
       </div>
       <div className="line3">
         <Key keyVal={"ENTER"} />
         {keys3.map((key) => {
-          return "test";
              return <Key keyVal={key} />;
         })}
 
