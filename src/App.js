@@ -3,9 +3,10 @@ import Dictionary from "./Component/Dictionary";
 import Board from "./Component/Board";
 import Popup from "./Component/Popup";
 import Keyboard from "./Component/Keyboard";
-import { compareWords, checkValidWord } from "./Component/Guess";
-import { createContext, useState } from "react";
+import { CompareWords, checkValidWord } from "./Component/Guess";
+import { createContext, useState, useContext } from "react";
 import { boardDefault } from "./Words";
+import { ColorContext } from "./Context/ColorContext";
 
 export const AppContext = createContext();
 
@@ -13,17 +14,27 @@ function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
   const [currGuess, setCurrGuess] = useState("");
-
+  const {
+    BackgroundColor,
+    frameColor,
+    ThemeColor1,
+    ThemeColor2,
+    ThemeColor3,
+    fontColor,
+    HandleDarkMode,
+    HandleColorBlindMode,
+    HandleDarkColorBlindMode,
+    HanldeStandardColor,
+  } = useContext(ColorContext);
   const onSelectLetter = (keyVal) => {
-    console.log(currAttempt)
+    console.log(currAttempt);
     if (currAttempt.letterPos > 4) return;
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
     setBoard(newBoard);
     setCurrAttempt({ ...currAttempt, letterPos: currAttempt.letterPos + 1 });
-    setCurrGuess(currGuess + keyVal)
+    setCurrGuess(currGuess + keyVal);
   };
-
 
   const onDelete = () => {
     if (currAttempt.letterPos === 0) return;
@@ -31,25 +42,30 @@ function App() {
     newBoard[currAttempt.attempt][currAttempt.letterPos - 1] = "";
     setBoard(newBoard);
     setCurrAttempt({ ...currAttempt, letterPos: currAttempt.letterPos - 1 });
-    setCurrGuess(currGuess.slice(0, -1))
+    setCurrGuess(currGuess.slice(0, -1));
   };
 
-
   const onEnter = () => {
-
     if (currAttempt.letterPos !== 5) return;
-    checkValidWord(currGuess, currAttempt.attempt).then(response => {
+    checkValidWord(currGuess, currAttempt.attempt).then((response) => {
       if (response == false) {
-        document.querySelector(".isWordCorrect").textContent = "This is not a valid word!"
+        document.querySelector(".isWordCorrect").textContent =
+          "This is not a valid word!";
         return;
-      }
-      else {
-        const isWordCorrect = compareWords(currGuess, currAttempt.attempt);
+      } else {
+        const isWordCorrect = CompareWords(
+          currGuess,
+          currAttempt.attempt,
+          ThemeColor1,
+          ThemeColor2,
+          ThemeColor3
+        );
         if (isWordCorrect) {
           // Leave a 1.5 second timer so they can see they guess it correctly
-          setTimeout(function() {document.querySelector(".popupContainer").style.display = "block";}, 1500);
-        }
-        else {
+          setTimeout(function () {
+            document.querySelector(".popupContainer").style.display = "block";
+          }, 1500);
+        } else {
           setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
           setCurrGuess("");
         }
@@ -57,12 +73,14 @@ function App() {
     });
   };
 
-
-
   return (
-    <div>
+    <div style={{ backgroundColor: BackgroundColor }}>
+      <button onClick={HandleDarkMode}>Dark Mode</button>
+      <button onClick={HandleColorBlindMode}>Color Blind Mode</button>
+      <button onClick={HandleDarkColorBlindMode}>Dark Color Blind Mode</button>
+      <button onClick={HanldeStandardColor}>Standard Color</button>
+
       <Popup />
-      <ColorChange />
       <Dictionary />
       <br />
       <AppContext.Provider
@@ -75,7 +93,7 @@ function App() {
           onDelete,
           onEnter,
           setCurrGuess,
-          currGuess
+          currGuess,
         }}
       >
         <div className="game">
