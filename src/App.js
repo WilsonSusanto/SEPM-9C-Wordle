@@ -7,6 +7,11 @@ import { CompareWords, checkValidWord } from "./Component/Guess";
 import { createContext, useState, useContext } from "react";
 import { boardDefault } from "./Words";
 import { ColorContext } from "./Context/ColorContext";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import * as React from "react";
 
 export const AppContext = createContext();
 
@@ -14,6 +19,9 @@ function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
   const [currGuess, setCurrGuess] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const {
     BackgroundColor,
     frameColor,
@@ -26,6 +34,17 @@ function App() {
     HandleDarkColorBlindMode,
     HanldeStandardColor,
   } = useContext(ColorContext);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
   const onSelectLetter = (keyVal) => {
     console.log(currAttempt);
     if (currAttempt.letterPos > 4) return;
@@ -75,10 +94,39 @@ function App() {
 
   return (
     <div style={{ backgroundColor: BackgroundColor }}>
-      <button onClick={HandleDarkMode}>Dark Mode</button>
-      <button onClick={HandleColorBlindMode}>Color Blind Mode</button>
-      <button onClick={HandleDarkColorBlindMode}>Dark Color Blind Mode</button>
-      <button onClick={HanldeStandardColor}>Standard Color</button>
+      <Button variant="contained" onClick={handleOpen}>
+        Setting
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Change Color
+          </Typography>
+          <Button variant="contained" onClick={HandleDarkMode}>
+            Dark Mode
+          </Button>
+          <br />
+          <br />
+          <Button variant="contained" onClick={HandleColorBlindMode}>
+            Color Blind Mode
+          </Button>
+          <br />
+          <br />
+          <Button variant="contained" onClick={HandleDarkColorBlindMode}>
+            Dark Color Blind Mode
+          </Button>
+          <br />
+          <br />
+          <Button variant="contained" onClick={HanldeStandardColor}>
+            Standard Color
+          </Button>
+        </Box>
+      </Modal>
 
       <Popup />
       <Dictionary />
