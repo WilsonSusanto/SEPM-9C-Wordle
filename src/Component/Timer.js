@@ -33,12 +33,9 @@ const Timer = () => {
     }
 
     return(
-        <div>
-            <button onClick={changeVisibility}>Show time until next wordle word</button>
-            <div className="timerDiv" style={{display: "none"}}>
-                <h1>Time until next Wordle word</h1>
-                <p>{timer}</p>
-            </div>
+        <div className="timerDiv">
+            <h1>NEXT WORDLE</h1>
+            <p>{timer}</p>
         </div>
     )
 } 

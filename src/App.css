@@ -77,3 +77,107 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.popupContainer {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  position: fixed;
+  background-color: #16161692;
+  vertical-align: middle;
+  text-align: center;
+  z-index: 2;
+  display: none;
+}
+
+.popupContainer .popupWindow {
+  width: 510px;
+  height: 600px;
+  position: relative;
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
+}
+
+.popupContainer .popupWindow .exitPopup {
+  width: 100%;
+  height: 5%;
+}
+
+.popupContainer .popupWindow .exitPopup p{ 
+  margin: 0px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(213, 24, 24);
+  cursor: pointer;
+  padding: 5px 10px 0px 0px;
+  float: right;
+
+}
+
+.popupContainer .popupWindow .statistics {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 65%;
+}
+
+.popupContainer .popupWindow .statistics h1{ 
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.popupContainer .popupWindow .timerDiv {
+  border-right: 2px solid black;
+  margin-left: -2px;
+  width: 50%;
+  height: 30%;
+  float: left;
+}
+.popupContainer .popupWindow .timerDiv h1, .popupContainer .popupWindow .timerDiv p{
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  font-size: 1.5em;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+
+
+.popupContainer .popupWindow .shareResults {
+  width: 50%;
+  height: 30%;
+  float: right;
+}
+
+.popupContainer .popupWindow .shareResults p {
+  display: inline-block;
+  margin: 0px 15px 0px 0px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  float: right;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+.popupContainer .popupWindow .shareResults button {
+  float: right;
+  margin-right: 15%;
+}
+
+.popupContainer .popupWindow .shareResults .shareFacebook, .popupContainer .popupWindow .shareResults .shareTwitter {
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+  height:30%;
+  top: 30%;
+  transform: translateY(-50%);
+}

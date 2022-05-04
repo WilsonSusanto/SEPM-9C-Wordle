@@ -1,7 +1,7 @@
 import ColorChange from "./Component/ColorChange";
-import Timer from "./Component/Timer";
 import Dictionary from "./Component/Dictionary";
 import Board from "./Component/Board";
+import Popup from "./Component/Popup";
 import Keyboard from "./Component/Keyboard";
 import { compareWords, checkValidWord } from "./Component/Guess";
 import { createContext, useState } from "react";
@@ -14,14 +14,13 @@ function App() {
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
   const [currGuess, setCurrGuess] = useState("");
 
-
   const onSelectLetter = (keyVal) => {
     console.log(currAttempt)
     if (currAttempt.letterPos > 4) return;
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
     setBoard(newBoard);
-    setCurrAttempt({ ...currAttempt, letterPos: currAttempt.letterPos + 1});
+    setCurrAttempt({ ...currAttempt, letterPos: currAttempt.letterPos + 1 });
     setCurrGuess(currGuess + keyVal)
   };
 
@@ -37,17 +36,23 @@ function App() {
 
 
   const onEnter = () => {
-    
+
     if (currAttempt.letterPos !== 5) return;
     checkValidWord(currGuess, currAttempt.attempt).then(response => {
       if (response == false) {
-        console.log("TEST")
-        setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
-        setCurrGuess("");
+        document.querySelector(".isWordCorrect").textContent = "This is not a valid word!"
         return;
       }
       else {
-        document.querySelector(".isWordCorrect").textContent = "You guessed the word!"
+        const isWordCorrect = compareWords(currGuess, currAttempt.attempt);
+        if (isWordCorrect) {
+          // Leave a 1.5 second timer so they can see they guess it correctly
+          setTimeout(function() {document.querySelector(".popupContainer").style.display = "block";}, 1500);
+        }
+        else {
+          setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
+          setCurrGuess("");
+        }
       }
     });
   };
@@ -56,8 +61,8 @@ function App() {
 
   return (
     <div>
+      <Popup />
       <ColorChange />
-      <Timer />
       <Dictionary />
       <br />
       <AppContext.Provider

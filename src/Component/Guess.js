@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 const apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"
 
-async function checkValidWord(guess, attempt) {
+async function checkValidWord(guess) {
     document.querySelector(".currentQuery").textContent = "You queried: " + guess.toUpperCase();
     // If the API request does not find the word, it will throw a 404, so the catch should only ever return the "Thats not a word" response,
     // but I put the ternery there just in case.
@@ -10,8 +10,7 @@ async function checkValidWord(guess, attempt) {
         try {
             const response = await axios.get(apiUrl + guess)
             if (response.status == 200) {
-                const isWordCorrect = compareWords(guess, attempt);
-                return isWordCorrect;
+                return true;
             }
         }
         catch (e) {
