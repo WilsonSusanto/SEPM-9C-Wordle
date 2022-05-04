@@ -3,7 +3,7 @@ import { AppContext } from "../App";
 import { ColorContext } from "../Context/ColorContext";
 
 function Letter({ letterPos, attemptVal }) {
-  const { frameColor } = useContext(ColorContext);
+  const { frameColor, fontColor } = useContext(ColorContext);
   const { board } = useContext(AppContext);
   const letter = board[attemptVal][letterPos];
 
@@ -13,7 +13,7 @@ function Letter({ letterPos, attemptVal }) {
       id={attemptVal + "-" + letterPos}
       style={{ borderLeftColor: frameColor }}
     >
-      <p>{letter}</p>
+      <p style={{ color: fontColor }}>{letter}</p>
     </div>
   );
 }

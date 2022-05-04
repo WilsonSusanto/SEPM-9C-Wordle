@@ -91,14 +91,14 @@ const Dictionary = () => {
 
   return (
     <div className="guessField" style={{ margin: "100px" }}>
-      <h1>Query API for valid word</h1>
+      <h1 style={{ color: fontColor }}>Query API for valid word</h1>
       <input
         placeholder="Check for a valid word"
         name="guess"
         onChange={(event) => setGuess(event.target.value)}
       ></input>
       <button onClick={checkValidWord}>Submit Guess</button>
-      <h2>Is this a valid word?</h2>
+      <h2 style={{ color: fontColor }}>Is this a valid word?</h2>
       <p className="currentQuery"></p>
       <p className="isValidWord"></p>
       <br></br>
