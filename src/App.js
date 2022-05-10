@@ -155,7 +155,7 @@ function App() {
 
 export default App;
 
-var wordOfTheDay = "HELLO";
+
 
 // function compareWords(guessedWord) {
 //   console.log("compareWords")

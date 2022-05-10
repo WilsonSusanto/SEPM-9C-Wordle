@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { ColorContext } from "../Context/ColorContext";
+import { getWordOfTheDay, setRandomWordOfTheDay } from "./WordOfTheDay";
 
 const apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
@@ -22,8 +23,8 @@ async function checkValidWord(guess) {
     return false;
   }
 }
-
-var wordOfTheDay = "HELLO"; // Temporarily defining the word of the day for testing
+setRandomWordOfTheDay()
+var wordOfTheDay = getWordOfTheDay(); 
 
 export const CompareWords = (guessedWord, attempt, color1, color2, color3) => {
   guessedWord = guessedWord.toUpperCase();
