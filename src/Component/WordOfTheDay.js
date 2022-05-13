@@ -7,14 +7,14 @@ var wordOfTheDay = ""
 const apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
 async function setRandomWordOfTheDay(){
-words = words.filter(d => /^.{5}$/.test(d)) // Filters the large array of words for only 5 letter words
-var wordAttempt = words[getRandomInt()].toUpperCase() // Chooses a random word from the array and is converted to upper case for guessing
+    words = words.filter(d => /^.{5}$/.test(d)) // Filters the large array of words for only 5 letter words
+    var wordAttempt = words[getRandomInt()].toUpperCase() // Chooses a random word from the array and is converted to upper case for guessing
 
 
-      try { // Checks if the word is valid before assigning as word of the day
+    try { // Checks if the word is valid before assigning as word of the day
         const response = await axios.get(apiUrl + wordAttempt);
         if (response.status == 200) {
-          wordOfTheDay = wordAttempt;
+            wordOfTheDay = wordAttempt;
         }
       } catch (e) {
         setRandomWordOfTheDay()

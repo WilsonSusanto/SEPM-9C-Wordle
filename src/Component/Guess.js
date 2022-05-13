@@ -31,7 +31,7 @@ export const CompareWords = (guessedWord, attempt, color1, color2, color3) => {
   var correctLocations = [];
   var incorrectLocations = []; //Initialising arrays to store the locations of correct letter locations, and correct letter but incorrect location index's
   document.querySelector(".isWordCorrect").textContent = "";
-
+  wordOfTheDay = getWordOfTheDay()
   const wordOfTheDayArray = wordOfTheDay.split("");
   const guessedWordArray = guessedWord.split(""); // Splitting the words into an array of it's letters
 
