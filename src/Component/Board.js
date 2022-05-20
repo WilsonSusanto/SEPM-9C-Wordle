@@ -19,7 +19,7 @@ function Board() {
   } = useContext(ColorContext);
   return (
     <div className="board" style={{ borderColor: frameColor }}>
-      <div className="row" id="row-0">
+      <div className="row" id="row-0" style={{ borderColor: frameColor }}>
         <Letter letterPos={0} attemptVal={0} />
         <Letter letterPos={1} attemptVal={0} />
         <Letter letterPos={2} attemptVal={0} />
@@ -54,7 +54,7 @@ function Board() {
         <Letter letterPos={3} attemptVal={4} />
         <Letter letterPos={4} attemptVal={4} />
       </div>
-      <div className="row" id="row-5">
+      <div className="row" id="row-5" style={{ borderColor: frameColor }}>
         <Letter letterPos={0} attemptVal={5} />
         <Letter letterPos={1} attemptVal={5} />
         <Letter letterPos={2} attemptVal={5} />

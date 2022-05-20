@@ -99,9 +99,11 @@
   text-align: center;
   z-index: 2;
   display: none;
+  cursor: pointer;
 }
 
 .popupContainer .popupWindow {
+  cursor:default;
   width: 510px;
   height: 600px;
   position: relative;
@@ -138,6 +140,13 @@
 .popupContainer .popupWindow .statistics h1{ 
   margin: 0px;
   padding: 0px;
+}
+
+.popupContainer .popupWindow .statistics #gamesWon {
+  position: absolute;
+   bottom: 0px;
+   left: 50%;
+   transform: translateX(-50%);
 }
 
 

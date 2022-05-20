@@ -3,7 +3,7 @@ import Dictionary from "./Component/Dictionary";
 import Board from "./Component/Board";
 import Popup from "./Component/Popup";
 import Keyboard from "./Component/Keyboard";
-import { CompareWords, checkValidWord } from "./Component/Guess";
+import { CompareWords, checkValidWord, revealPopup } from "./Component/Guess";
 import { createContext, useState, useContext } from "react";
 import { boardDefault } from "./Words";
 import { ColorContext } from "./Context/ColorContext";
@@ -80,13 +80,13 @@ function App() {
           ThemeColor3
         );
         if (isWordCorrect) {
-          // Leave a 1.5 second timer so they can see they guess it correctly
-          setTimeout(function () {
-            document.querySelector(".popupContainer").style.display = "block";
-          }, 1500);
+          revealPopup();
         } else {
           setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
           setCurrGuess("");
+        }
+        if (currAttempt.attempt == 5) {
+          revealPopup();
         }
       }
     });

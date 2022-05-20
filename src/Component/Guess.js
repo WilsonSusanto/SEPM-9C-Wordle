@@ -5,6 +5,20 @@ import { getWordOfTheDay, setRandomWordOfTheDay } from "./WordOfTheDay";
 
 const apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+// Leave a 1.5 second timer so they can see they guess it correctly
+function revealPopup() {
+  if (localStorage.getItem("GamesWon") == null) {
+    document.getElementById("gamesWon").innerHTML = "Games Won: 0";
+  }
+  else {
+    document.getElementById("gamesWon").innerHTML = "Games Won: " + localStorage.getItem("GamesWon");
+  }
+  setTimeout(function () {
+            
+    document.querySelector(".popupContainer").style.display = "block";
+  }, 1500);
+}
+
 async function checkValidWord(guess) {
   document.querySelector(".currentQuery").textContent =
     "You queried: " + guess.toUpperCase();
@@ -71,13 +85,17 @@ export const CompareWords = (guessedWord, attempt, color1, color2, color3) => {
       document.getElementById(String(attempt) + "-" + i).style.backgroundColor =
         color1;
     }
-    var saved = parseInt(localStorage.getItem("GamesWon")) + 1;
-    localStorage.setItem("GamesWon", JSON.stringify(saved))
-    document.getElementById("gamesWon").innerHTML = "Games Won: " + localStorage.getItem("GamesWon")
+    if (localStorage.getItem("GamesWon") == null) {
+      localStorage.setItem("GamesWon", 1)
+    }
+    else {
+      var saved = parseInt(localStorage.getItem("GamesWon")) + 1;
+      localStorage.setItem("GamesWon", JSON.stringify(saved))
+    }
     return true;
   }
 
   // }
 };
 
-export { checkValidWord };
+export { checkValidWord, revealPopup };

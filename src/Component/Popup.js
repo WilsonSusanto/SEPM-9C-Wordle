@@ -1,18 +1,27 @@
+import { useEffect } from "react";
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
 import Timer from "./Timer";
 
 
 const Popup = () => {
+
+  useEffect(() => {
+    if (localStorage.getItem("GamesWon") == null) {
+      document.getElementById("gamesWon").innerHTML = "Games Won: 0";
+    }
+    else {
+      document.getElementById("gamesWon").innerHTML = "Games Won: " + localStorage.getItem("GamesWon");
+    }
+  }, [])
+
     return(
-        <div className="popupContainer">
-        <div className="popupWindow">
+        <div className="popupContainer" onClick={() => {document.querySelector(".popupContainer").style.display = "none";}}>
+        <div className="popupWindow" onClick={(e) => {e.stopPropagation();}}>
           <div className="exitPopup">
               <p onClick={() => {document.querySelector(".popupContainer").style.display = "none";}}>X</p>
             </div>
           <div className="statistics">
             <h1>Statistics</h1>
-          </div>
-          <div className="gamesWonDiv">
             <h3 id="gamesWon">Games Won: </h3>
           </div>
           <Timer />
