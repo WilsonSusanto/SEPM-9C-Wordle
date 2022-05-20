@@ -71,6 +71,9 @@ export const CompareWords = (guessedWord, attempt, color1, color2, color3) => {
       document.getElementById(String(attempt) + "-" + i).style.backgroundColor =
         color1;
     }
+    var saved = parseInt(localStorage.getItem("GamesWon")) + 1;
+    localStorage.setItem("GamesWon", JSON.stringify(saved))
+    document.getElementById("gamesWon").innerHTML = "Games Won: " + localStorage.getItem("GamesWon")
     return true;
   }
 

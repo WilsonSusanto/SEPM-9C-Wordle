@@ -12,6 +12,9 @@ const Popup = () => {
           <div className="statistics">
             <h1>Statistics</h1>
           </div>
+          <div className="gamesWonDiv">
+            <h3 id="gamesWon">Games Won: </h3>
+          </div>
           <Timer />
           <div className="shareResults">
             <div className="shareFacebook">

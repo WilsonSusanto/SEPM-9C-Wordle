@@ -93,9 +93,13 @@ function App() {
   };
 
   return (
-    <div style={{ backgroundColor: BackgroundColor }}>
+<div style={{ backgroundColor: BackgroundColor }}>
+      <Popup />
       <Button variant="contained" onClick={handleOpen}>
-        Setting
+        Settings
+      </Button>
+      <Button variant="contained" onClick={() => { document.querySelector(".popupContainer").style.display = "block";}}>
+        Statistics
       </Button>
       <Modal
         open={open}
@@ -127,8 +131,6 @@ function App() {
           </Button>
         </Box>
       </Modal>
-
-      <Popup />
       <Dictionary />
       <br />
       <AppContext.Provider
