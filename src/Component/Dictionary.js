@@ -90,7 +90,7 @@ const Dictionary = () => {
   }
 
   return (
-    <div className="guessField" style={{ margin: "100px" }}>
+    <div className="guessField" style={{ margin: "100px", display: "none", visibility: "hidden" }}>
       <h1 style={{ color: fontColor }}>Query API for valid word</h1>
       <input
         placeholder="Check for a valid word"

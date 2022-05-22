@@ -3,7 +3,7 @@ import Dictionary from "./Component/Dictionary";
 import Board from "./Component/Board";
 import Popup from "./Component/Popup";
 import Keyboard from "./Component/Keyboard";
-import { CompareWords, checkValidWord, revealPopup } from "./Component/Guess";
+import { CompareWords, checkValidWord, revealPopup, lose } from "./Component/Guess";
 import { createContext, useState, useContext } from "react";
 import { boardDefault } from "./Words";
 import { ColorContext } from "./Context/ColorContext";
@@ -70,6 +70,7 @@ function App() {
       if (response == false) {
         document.querySelector(".isWordCorrect").textContent =
           "This is not a valid word!";
+          alert('This is not a valid word!')
         return;
       } else {
         const isWordCorrect = CompareWords(
@@ -86,6 +87,7 @@ function App() {
           setCurrGuess("");
         }
         if (currAttempt.attempt == 5) {
+          lose()
           revealPopup();
         }
       }

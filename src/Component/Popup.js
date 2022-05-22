@@ -12,6 +12,20 @@ const Popup = () => {
     else {
       document.getElementById("gamesWon").innerHTML = "Games Won: " + localStorage.getItem("GamesWon");
     }
+    if (localStorage.getItem("GamesLost") == null) {
+      document.getElementById("gamesLost").innerHTML = "Games Lost: 0";
+    }
+    else {
+      document.getElementById("gamesLost").innerHTML = "Games Lost: " + localStorage.getItem("GamesLost");
+    }
+    if (localStorage.getItem("GamesWon") == null || 0 && localStorage.getItem("GamesLost") == null || 0) {
+      document.getElementById("winPercent").innerHTML = "Play a game to see your win percentage!";
+    }else{
+      var totalGames = parseInt(localStorage.getItem("GamesWon")) + parseInt(localStorage.getItem("GamesLost")) // Calculates win percentage using WinPercentage = GamesWon / TotalGames
+      var winPercentage = (parseInt(localStorage.getItem("GamesWon")) / totalGames) * 100
+      document.getElementById("winPercent").innerHTML = "Win Percentage: " + Math.round(winPercentage) + '%';
+    }
+
   }, [])
 
     return(
@@ -23,6 +37,8 @@ const Popup = () => {
           <div className="statistics">
             <h1>Statistics</h1>
             <h3 id="gamesWon">Games Won: </h3>
+            <h3 id="gamesLost">Games Lost: </h3>
+            <h3 id="winPercent">Win Percentage: </h3>
           </div>
           <Timer />
           <div className="shareResults">

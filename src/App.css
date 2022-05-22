@@ -144,7 +144,21 @@
 
 .popupContainer .popupWindow .statistics #gamesWon {
   position: absolute;
-   bottom: 0px;
+   bottom: 250px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.popupContainer .popupWindow .statistics #gamesLost {
+  position: absolute;
+   bottom: 210px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.popupContainer .popupWindow .statistics #winPercent {
+  position: absolute;
+   bottom: 150px;
    left: 50%;
    transform: translateX(-50%);
 }

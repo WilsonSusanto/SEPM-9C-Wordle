@@ -8,15 +8,33 @@ const apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 // Leave a 1.5 second timer so they can see they guess it correctly
 function revealPopup() {
   if (localStorage.getItem("GamesWon") == null) {
+    localStorage.setItem("GamesWon", 0)
     document.getElementById("gamesWon").innerHTML = "Games Won: 0";
   }
   else {
     document.getElementById("gamesWon").innerHTML = "Games Won: " + localStorage.getItem("GamesWon");
   }
+  if (localStorage.getItem("GamesLost") == null) {
+    localStorage.setItem("GamesLost", 0)
+    document.getElementById("gamesLost").innerHTML = "Games Lost: 0";
+  }
+  else {
+    document.getElementById("gamesLost").innerHTML = "Games Lost: " + localStorage.getItem("GamesLost");
+  }
   setTimeout(function () {
             
     document.querySelector(".popupContainer").style.display = "block";
   }, 1500);
+}
+
+function lose() {
+  if (localStorage.getItem("GamesLost") == null) {
+    localStorage.setItem("GamesLost", 1)
+  }
+  else {
+    var saved = parseInt(localStorage.getItem("GamesLost")) + 1;
+    localStorage.setItem("GamesLost", JSON.stringify(saved))
+  }
 }
 
 async function checkValidWord(guess) {
@@ -87,10 +105,24 @@ export const CompareWords = (guessedWord, attempt, color1, color2, color3) => {
     }
     if (localStorage.getItem("GamesWon") == null) {
       localStorage.setItem("GamesWon", 1)
+      if (localStorage.getItem("GamesLost") == null){
+        document.getElementById("winPercent").innerHTML = "Win Percentage: 100%";
+      }else{
+        var totalGames = parseInt(localStorage.getItem("GamesWon")) + parseInt(localStorage.getItem("GamesLost")) // Calculates win percentage using WinPercentage = GamesWon / TotalGames
+        var winPercentage = (parseInt(localStorage.getItem("GamesWon")) / totalGames) * 100
+        document.getElementById("winPercent").innerHTML = "Win Percentage: " + Math.round(winPercentage) + '%';
+      }  
     }
     else {
       var saved = parseInt(localStorage.getItem("GamesWon")) + 1;
       localStorage.setItem("GamesWon", JSON.stringify(saved))
+      if (localStorage.getItem("GamesLost") == null){
+        document.getElementById("winPercent").innerHTML = "Win Percentage: 100%";
+      }else{
+        var totalGames = parseInt(localStorage.getItem("GamesWon")) + parseInt(localStorage.getItem("GamesLost"))
+        var winPercentage = (parseInt(localStorage.getItem("GamesWon")) / totalGames) * 100
+        document.getElementById("winPercent").innerHTML = "Win Percentage: " + Math.round(winPercentage) + '%';
+      } 
     }
     return true;
   }
@@ -98,4 +130,4 @@ export const CompareWords = (guessedWord, attempt, color1, color2, color3) => {
   // }
 };
 
-export { checkValidWord, revealPopup };
+export { checkValidWord, revealPopup, lose };
